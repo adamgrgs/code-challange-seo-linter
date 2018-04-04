@@ -1,4 +1,8 @@
-const rules = [require('./rurles/ruleImgTagMustHaveAltAttribute')];
+const rules = [
+  require('./rules/ruleImgTagMustHaveAltAttribute'),
+  require('./rules/ruleHyperlinkTagMustHaveRelAttribute'),
+];
+
 const {JSDOM} = require("jsdom");
 
 // todo move file path to config
