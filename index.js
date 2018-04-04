@@ -3,6 +3,7 @@ const rules = [
   require('./rules/ruleHyperlinkTagMustHaveRelAttribute'),
   require('./rules/ruleTitleTagMustExist'),
   require('./rules/ruleMetaTagDescriptionMustExist'),
+  require('./rules/ruleMetaTagKeywordsMustExist'),
 ];
 
 const {JSDOM} = require("jsdom");
