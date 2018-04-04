@@ -4,6 +4,7 @@ const rules = [
   require('./rules/ruleTitleTagMustExist'),
   require('./rules/ruleMetaTagDescriptionMustExist'),
   require('./rules/ruleMetaTagKeywordsMustExist'),
+  require('./rules/ruleStrongTagMaxCount'),
 ];
 
 const {JSDOM} = require("jsdom");
