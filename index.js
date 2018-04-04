@@ -1,6 +1,7 @@
 const rules = [
   require('./rules/ruleImgTagMustHaveAltAttribute'),
   require('./rules/ruleHyperlinkTagMustHaveRelAttribute'),
+  require('./rules/ruleTitleTagMustExist'),
 ];
 
 const {JSDOM} = require("jsdom");
