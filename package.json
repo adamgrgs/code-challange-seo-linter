@@ -1,0 +1,11 @@
+{
+  "name": "seo-linter",
+  "version": "1.0.0",
+  "description": "A SEO linter package for users scan HTML file and show all of the SEO defects.",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  }
+}
