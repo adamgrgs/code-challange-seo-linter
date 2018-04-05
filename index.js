@@ -1,23 +1,45 @@
-const rules = [
-  require('./rules/ruleImgTagMustHaveAltAttribute'),
-  require('./rules/ruleHyperlinkTagMustHaveRelAttribute'),
-  require('./rules/ruleTitleTagMustExist'),
-  require('./rules/ruleMetaTagDescriptionMustExist'),
-  require('./rules/ruleMetaTagKeywordsMustExist'),
-  require('./rules/ruleStrongTagMaxCount'),
-  require('./rules/ruleH1TagMaxCount'),
-];
-
+const fs = require('fs');
+const basename = require('basename');
 const {JSDOM} = require("jsdom");
 
-// todo move file path to config
-// todo free to chain any rules by user
-JSDOM.fromFile('test/index.html').then(function (dom) {
-  rules.forEach((fn) => {
-    const result = fn(dom);
-
-    if (result.hasError()) {
-      console.log(result.output);
-    }
-  });
+fs.readFile('config.json', (err, data) => {
+  scanFolder(JSON.parse(filterError(err, data)));
 });
+
+const filterError = function(err, data) {
+  if (err) {
+    throw err;
+  }
+
+  return data;
+};
+
+const scanFolder = function(config) {
+  fs.readdir(config.rulesFolder, loadAllRules(config));
+};
+
+const loadAllRules = function (config) {
+  return function (err, ruleList) {
+    run(
+      filterError(err, ruleList).filter((filename) =>
+        filename.startsWith(config.rulesPrefix) && filename.endsWith(config.rulesSuffix)
+      )
+      .map((filename) => {
+        return require(config.rulesFolder + '/' + basename(filename));
+      })
+    );
+  };
+};
+
+const run = function (rules) {
+  // todo free to chain any rules by user
+  JSDOM.fromFile('test/index.html').then(function (dom) {
+    rules.forEach((fn) => {
+      const result = fn(dom);
+
+      if (result.hasError()) {
+        console.log(result.output);
+      }
+    });
+  });
+};
