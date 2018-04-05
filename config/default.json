@@ -1,5 +1,5 @@
 {
   "rulesFolder": "./rules",
-  "rulesPrefix": "rule",
-  "rulesSuffix": ".js"
+  "filenamePattern": "^\\d+_\\w+.js",
+  "runStartsWithOnly": []
 }

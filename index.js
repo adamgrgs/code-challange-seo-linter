@@ -9,9 +9,17 @@ fs.readdir(config.rulesFolder, function (err, ruleList) {
   }
 
   run(
-    ruleList.filter((filename) =>
-      filename.startsWith(config.rulesPrefix) && filename.endsWith(config.rulesSuffix)
-    )
+    ruleList.filter((filename) => {
+      if (filename.match(config.filenamePattern) === null) {
+        return false;
+      }
+
+      if (config.runStartsWithOnly.length <= 0) {
+        return true;
+      }
+
+      return config.runStartsWithOnly.find((prefix) => filename.startsWith(prefix));
+    })
     .map((filename) => {
       return require(config.rulesFolder + '/' + basename(filename));
     })
@@ -19,7 +27,6 @@ fs.readdir(config.rulesFolder, function (err, ruleList) {
 });
 
 const run = function (rules) {
-  // todo free to chain any rules by user
   JSDOM.fromFile('test/index.html').then(function (dom) {
     rules.forEach((fn) => {
       const result = fn(dom);
