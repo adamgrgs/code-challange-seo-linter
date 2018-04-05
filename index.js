@@ -27,7 +27,7 @@ fs.readdir(config.rulesFolder, function (err, ruleList) {
 });
 
 const run = function (rules) {
-  JSDOM.fromFile('test/index.html').then(function (dom) {
+  JSDOM.fromFile(config.inputTarget).then(function (dom) {
     rules.forEach((fn) => {
       const result = fn(dom);
 

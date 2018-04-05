@@ -1,5 +1,6 @@
 {
   "rulesFolder": "./rules",
   "filenamePattern": "^\\d+_\\w+.js",
-  "runStartsWithOnly": []
+  "runStartsWithOnly": [],
+  "inputTarget": "test/index.html"
 }
