@@ -8,6 +8,7 @@
   "license": "ISC",
   "dependencies": {
     "basename": "^0.1.2",
+    "config": "^1.30.0",
     "jsdom": "^11.7.0",
     "sprintf-js": "^1.1.1"
   }
