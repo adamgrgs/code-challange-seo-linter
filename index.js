@@ -10,27 +10,30 @@ function SeoLinter(config) {
 
 SeoLinter.prototype.exec = function (readStream = null) {
   this.readStream = readStream;
+  this.config.customizeRulesFolder.push(__dirname + '/rules');
   const self = this;
 
-  fs.readdir(self.config.rulesFolder, function (err, ruleList) {
-    throwIfErr(err);
+  this.config.customizeRulesFolder.forEach((currentFolder) => {
+    fs.readdir(currentFolder, function (err, ruleList) {
+      throwIfErr(err);
 
-    run(
-      ruleList.filter((filename) => {
-        if (filename.match(self.config.filenamePattern) === null) {
-          return false;
-        }
+      run(
+        ruleList.filter((filename) => {
+          if (filename.match(self.config.filenamePattern) === null) {
+            return false;
+          }
 
-        if (self.config.runStartsWithOnly.length <= 0) {
-          return true;
-        }
+          if (self.config.runStartsWithOnly.length <= 0) {
+            return true;
+          }
 
-        return self.config.runStartsWithOnly.find((prefix) => filename.startsWith(prefix));
-      })
-      .map((filename) => {
-        return require(self.config.rulesFolder + '/' + basename(filename));
-      })
-    );
+          return self.config.runStartsWithOnly.find((prefix) => filename.startsWith(prefix));
+        })
+        .map((filename) => {
+          return require(currentFolder + '/' + basename(filename));
+        })
+      );
+    });
   });
 
   function throwIfErr (err) {

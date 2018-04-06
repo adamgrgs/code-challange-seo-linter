@@ -1,6 +1,6 @@
 const SeoLinter = require('../index.js');
 const seoLinterInstance = new SeoLinter({
-  "rulesFolder": "./rules",
+  "customizeRulesFolder": [],
   "filenamePattern": "^\\d+_\\w+.js",
   "runStartsWithOnly": [],
   "inputTarget": "example/test/index.html",
