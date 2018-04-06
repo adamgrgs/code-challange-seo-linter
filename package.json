@@ -1,5 +1,5 @@
 {
-  "name": "code-challange-seo-linter",
+  "name": "code-challenge-seo-linter",
   "version": "1.0.1",
   "description": "A SEO linter package for users scan HTML file and show all of the SEO defects.",
   "main": "index.js",
