@@ -1,7 +1,0 @@
-{
-  "rulesFolder": "./rules",
-  "filenamePattern": "^\\d+_\\w+.js",
-  "runStartsWithOnly": [],
-  "inputTarget": "test/index.html",
-  "outputTarget": "test/output.txt"
-}
