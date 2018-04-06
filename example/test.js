@@ -4,7 +4,7 @@ const seoLinterInstance = new SeoLinter({
   "filenamePattern": "^\\d+_\\w+.js",
   "runStartsWithOnly": [],
   "inputTarget": "example/test/index.html",
-  // "outputTarget": "test/output.txt"
+  // "outputTarget": "example/test/output.txt"
   "outputTarget": ""
 });
 seoLinterInstance.exec();
