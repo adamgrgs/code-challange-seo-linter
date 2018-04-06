@@ -9,7 +9,6 @@ function SeoLinter(config) {
 }
 
 SeoLinter.prototype.exec = function (readStream = null) {
-  this.readStream = readStream;
   this.config.customizeRulesFolder.push(__dirname + '/rules');
   const self = this;
 
@@ -47,11 +46,14 @@ SeoLinter.prototype.exec = function (readStream = null) {
 
   function run(rules) {
     // read stream
-    if (self.readStream !== null) {
-      let dom = new JSDOM(self.readStream.read().toString());
-      lint(rules, dom);
-
-      return;
+    if (readStream !== null) {
+      readStream.on('readable', function () {
+        const buffer = readStream.read();
+        if (buffer) {
+          const dom = new JSDOM(buffer.toString());
+          lint(rules, dom);
+        }
+      });
     }
 
     // read file
