@@ -1,10 +1,9 @@
 const SeoLinter = require('../index.js');
 const seoLinterInstance = new SeoLinter({
-  "customizeRulesFolder": [],
-  "filenamePattern": "^\\d+_\\w+.js",
+  "customizeRulesFolder": [__dirname + "/helps"],
   "runStartsWithOnly": [],
-  "inputTarget": "example/test/index.html",
-  // "outputTarget": "example/test/output.txt"
+  "inputTarget": "test/index.html",
+  // "outputTarget": "test/output.txt"
   "outputTarget": ""
 });
 seoLinterInstance.exec();
@@ -16,4 +15,4 @@ seoLinterInstance.exec();
 // rs.push('</html>');
 // rs.push(null);
 //
-// seo.exec(rs);
+// seoLinterInstance.exec();

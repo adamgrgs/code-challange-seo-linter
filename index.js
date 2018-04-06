@@ -19,7 +19,7 @@ SeoLinter.prototype.exec = function (readStream = null) {
 
       run(
         ruleList.filter((filename) => {
-          if (filename.match(self.config.filenamePattern) === null) {
+          if (filename.match(/^\d+_\w+.js/) === null) {
             return false;
           }
 
@@ -29,9 +29,7 @@ SeoLinter.prototype.exec = function (readStream = null) {
 
           return self.config.runStartsWithOnly.find((prefix) => filename.startsWith(prefix));
         })
-        .map((filename) => {
-          return require(currentFolder + '/' + basename(filename));
-        })
+        .map(loadModule(currentFolder))
       );
     });
   });
@@ -39,6 +37,12 @@ SeoLinter.prototype.exec = function (readStream = null) {
   function throwIfErr (err) {
     if (err)
       throw err;
+  }
+
+  function loadModule(currentFolder) {
+    return function(filename) {
+      return require(currentFolder + '/' + basename(filename));
+    }
   }
 
   function run(rules) {
