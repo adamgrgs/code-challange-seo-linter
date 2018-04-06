@@ -4,7 +4,11 @@
   "description": "A SEO linter package for users scan HTML file and show all of the SEO defects.",
   "main": "index.js",
   "scripts": {},
-  "author": "",
+  "author": "Ricky Bien <guitarbien@gmail.com> (https://github.com/guitarbien/seo-linter)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/npm.git"
+  },
   "license": "ISC",
   "dependencies": {
     "basename": "^0.1.2",
