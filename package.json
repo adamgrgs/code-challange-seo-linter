@@ -7,7 +7,7 @@
   "author": "Ricky Bien <guitarbien@gmail.com> (https://github.com/guitarbien/seo-linter)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/npm/npm.git"
+    "url": "git+https://github.com/guitarbien/code-challange-seo-linter"
   },
   "license": "ISC",
   "dependencies": {
